@@ -19,7 +19,7 @@ export const friends: Friend[] = [
     passwordHint: '¿Qué me regaló de Navidad?',
     password: md5('billetera'),
     images: ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png'],
-    note: undefined,
+    note: 'gracias por ser mi primera amistad, por las risas y por todos esos momentos inolvidables.',
   },
   {
     id: 'valeria',
@@ -49,6 +49,15 @@ export const friends: Friend[] = [
     images: ['01.jpeg'],
     videos: ['video1.mp4', 'video2.mp4'],
     note: 'gracias por darme contacto físico aun cuando no te gusta mucho darlo.\n\nte quiero mucho, y ni me tienes que responder porque ya sé que tú igual. duhh.',
+  },
+  {
+    id: 'cata',
+    name: 'Cata',
+    quote: 'las mejores personas aparecen sin aviso y se quedan para siempre',
+    passwordHint: '¿Cuál es nuestro lugar favorito juntas?',
+    password: md5('cata'),
+    images: ['1.jpeg', '2.jpeg', '3.jpeg'],
+    note: undefined,
   },
   {
     id: 'javid',

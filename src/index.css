@@ -291,7 +291,7 @@ body::after {
   animation: slideUp 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.42s both;
 }
 
-/* Scattered poetic phrases */
+/* Scattered poetic phrases — desktop only */
 .hero-phrase {
   position: absolute;
   font-family: 'Lora', Georgia, serif;
@@ -304,6 +304,10 @@ body::after {
   letter-spacing: 0.06em;
   white-space: nowrap;
   animation: fadeIn 3s ease both;
+}
+
+@media (max-width: 767px) {
+  .hero-phrase { display: none; }
 }
 
 .hero-divider { display: none; }
