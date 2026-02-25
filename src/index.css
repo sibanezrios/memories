@@ -927,6 +927,53 @@ body::after {
 .lightbox-nav.prev { left: 1.2rem; }
 .lightbox-nav.next { right: 1.2rem; }
 
+/* Zoom controls */
+.lightbox-zoom-controls {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 301;
+}
+
+.lightbox-zoom-btn {
+  background: rgba(44, 30, 40, 0.55);
+  border: 1px solid rgba(196, 160, 178, 0.25);
+  color: var(--sepia-light);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, opacity 0.2s;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.lightbox-zoom-btn:hover:not(:disabled) {
+  background: rgba(44, 30, 40, 0.9);
+}
+
+.lightbox-zoom-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.lightbox-zoom-level {
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  color: var(--sepia-medium);
+  opacity: 0.7;
+  min-width: 38px;
+  text-align: center;
+}
+
 .lightbox-counter {
   position: fixed;
   bottom: 1.4rem;

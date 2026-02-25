@@ -47,30 +47,38 @@ interface LightboxProps {
   onClose: () => void
 }
 
+const ZOOM_STEP = 0.4
+const ZOOM_MIN  = 1
+const ZOOM_MAX  = 3
+
 function Lightbox({ media, friendId, startIndex, onClose }: LightboxProps) {
   const [current, setCurrent] = useState(startIndex)
+  const [zoom, setZoom] = useState(1)
   const total = media.length
 
-  const prev = useCallback(() => setCurrent((c) => (c - 1 + total) % total), [total])
-  const next = useCallback(() => setCurrent((c) => (c + 1) % total), [total])
+  const prev = useCallback(() => { setCurrent((c) => (c - 1 + total) % total); setZoom(1) }, [total])
+  const next = useCallback(() => { setCurrent((c) => (c + 1) % total);          setZoom(1) }, [total])
+
+  const zoomIn  = () => setZoom((z) => Math.min(z + ZOOM_STEP, ZOOM_MAX))
+  const zoomOut = () => setZoom((z) => Math.max(z - ZOOM_STEP, ZOOM_MIN))
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft')  prev()
       if (e.key === 'ArrowRight') next()
       if (e.key === 'Escape')     onClose()
+      if (e.key === '+' || e.key === '=') zoomIn()
+      if (e.key === '-')                  zoomOut()
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
   }, [prev, next, onClose])
 
   const item = media[current]
+  const isImage = item.kind === 'image'
 
   return (
-    <div
-      className="lightbox-backdrop"
-      onClick={onClose}
-    >
+    <div className="lightbox-backdrop" onClick={onClose}>
       <div className="lightbox-img-wrap" onClick={(e) => e.stopPropagation()}>
         {item.kind === 'video' ? (
           <video
@@ -85,11 +93,35 @@ function Lightbox({ media, friendId, startIndex, onClose }: LightboxProps) {
           <img
             src={`/memories/${friendId}/${item.filename}`}
             alt={`Foto ${current + 1}`}
-            style={{ filter: filmFilter(item.globalIndex) }}
+            style={{
+              filter: filmFilter(item.globalIndex),
+              transform: `scale(${zoom})`,
+              transformOrigin: 'center center',
+              transition: 'transform 0.25s ease',
+              cursor: zoom > 1 ? 'zoom-out' : 'default',
+            }}
           />
         )}
         <button className="lightbox-close" onClick={onClose} aria-label="Cerrar">×</button>
       </div>
+
+      {isImage && (
+        <div className="lightbox-zoom-controls" onClick={(e) => e.stopPropagation()}>
+          <button
+            className="lightbox-zoom-btn"
+            onClick={zoomOut}
+            disabled={zoom <= ZOOM_MIN}
+            aria-label="Zoom out"
+          >−</button>
+          <span className="lightbox-zoom-level">{Math.round(zoom * 100)}%</span>
+          <button
+            className="lightbox-zoom-btn"
+            onClick={zoomIn}
+            disabled={zoom >= ZOOM_MAX}
+            aria-label="Zoom in"
+          >+</button>
+        </div>
+      )}
 
       {total > 1 && (
         <>
