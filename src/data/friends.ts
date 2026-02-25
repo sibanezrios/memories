@@ -19,7 +19,7 @@ export const friends: Friend[] = [
     passwordHint: '¿Qué me regaló de Navidad?',
     password: md5('billetera'),
     images: ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png'],
-    note: 'gracias por ser mi primera amistad, por las risas y por todos esos momentos inolvidables.',
+    note: undefined,
   },
   {
     id: 'valeria',
@@ -53,7 +53,7 @@ export const friends: Friend[] = [
   {
     id: 'cata',
     name: 'Cata',
-    quote: 'las mejores personas aparecen sin aviso y se quedan para siempre',
+    quote: 'gracias por ser mi primera amistad, por las risas y por todos esos momentos inolvidables',
     passwordHint: '¿Cuál es nuestro lugar favorito juntas?',
     password: md5('cata'),
     images: ['1.jpeg', '2.jpeg', '3.jpeg'],
