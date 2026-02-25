@@ -11,15 +11,16 @@ interface Props {
 function WaxSeal({ initial, unlocked }: { initial: string; unlocked: boolean }) {
   return (
     <div className={`wax-seal${unlocked ? ' unlocked' : ''}`}>
-      <svg width="36" height="36" viewBox="0 0 36 36">
-        <circle cx="18" cy="18" r="16" fill="#8B3E3E" />
-        <circle cx="18" cy="18" r="13" fill="#A04545" />
-        <circle cx="18" cy="18" r="12" fill="none" stroke="#6B2E2E" strokeWidth="1" />
+      <svg width="38" height="38" viewBox="0 0 38 38">
+        <circle cx="19" cy="19" r="17" fill="#7A4A62" />
+        <circle cx="19" cy="19" r="14" fill="#9E6080" />
+        <circle cx="19" cy="19" r="13" fill="none" stroke="#5A3A52" strokeWidth="1.2" />
+        <circle cx="19" cy="19" r="9" fill="none" stroke="rgba(255,235,245,0.25)" strokeWidth="0.8" />
         <text
-          x="18"
-          y="23"
+          x="19"
+          y="24"
           textAnchor="middle"
-          fill="#F2E8D5"
+          fill="#FFF0F5"
           fontFamily="Playfair Display, Georgia, serif"
           fontSize="13"
           fontWeight="bold"
